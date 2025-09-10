@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:zego_zimkit/zego_zimkit.dart';
 import 'package:zegocloude_chat_app/login_screen.dart';
 
@@ -13,7 +14,7 @@ class MYChatApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'chat app',
       theme: ThemeData(primarySwatch: Colors.indigo),

@@ -1,28 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zego_zimkit/zego_zimkit.dart';
-import 'package:zegocloude_chat_app/home_screen.dart';
+import 'package:get/get.dart';
+import 'package:zegocloude_chat_app/login_controller.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController userIDController = TextEditingController();
-  final TextEditingController userNameController = TextEditingController();
-
-  Future<void> login() async {
-    await ZIMKit().connectUser(
-      id: userIDController.text,
-      name: userNameController.text,
-    );
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
-    );
-  }
+class LoginScreen extends StatelessWidget {
+   LoginScreen({super.key});
+  final LoginController loginController=Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextField(
-              controller: userIDController,
+              controller: loginController.userIDController,
               decoration: InputDecoration(
                 labelText: 'User ID',
                 border: OutlineInputBorder(),
@@ -45,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const SizedBox(height: 20),
             TextField(
-              controller: userNameController,
+              controller:loginController. userNameController,
               decoration: InputDecoration(
                 labelText: 'User name',
                 border: OutlineInputBorder(),
@@ -56,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  login();
+                  loginController.login();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.indigo,
